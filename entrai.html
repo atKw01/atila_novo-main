@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada de Alunos</title>
+</head>
+<body>
+    <h1>Cálculo de Presença</h1>
+    <form id="inputTurma" style="user-select: none;">
+        <h2>Turma:</h2>
+        <input type="radio" id="turma0" name="turma" value="sq" required>
+        <label for="turma0">SQ's</label>
+        <input type="radio" id="turma1" name="turma" value="qs" required>
+        <label for="turma1">QS'</label>
+        <input type="radio" id="turma3" name="turma" value="tq" required>
+        <label for="turma3">TQ's</label>
+        <input type="radio" id="turma4" name="turma" value="qt" required>
+        <label for="turma3">QT's</label>
+        <input type="radio" id="turma5" name="turma" value="pje" required>
+        <label for="turma4">PJE's</label>
+        <input type="radio" id="turma6" name="turma" value="sat" required>
+        <label for="turma5">SAT's</label>
+        <div id="diaSemana" style="display: none;">
+            <br>
+            <h3 id="diaSemanaPJE">Qual o dia?</h3>
+            <input type="radio" id="seg" name="dia" value="segunda" required>
+            <label for="seg" id="labelSeg" >Segunda-feira</label>
+            <input type="radio" id="ter" name="dia" value="terca" required>
+            <label for="ter" id="labelTer" >Terça-feira</label>
+            <input type="radio" id="qua" name="dia" value="quarta" required>
+            <label for="qua" id="labelQua" >Quarta-feira</label>
+            <input type="radio" id="qui" name="dia" value="quinta" required>
+            <label for="qui" id="labelQui" >Quinta-feira</label>
+            <input type="radio" id="sex" name="dia" value="sexta" required>
+            <label for="sex" id="labelSex" >Sexta-feira</label>
+            <input type="radio" id="sab" name="dia" value="sabado" required>
+            <label for="sab" id="labelSab" >Sábado</label>
+            <br><br>
+        </div>
+        <h2 id="alunosTurma">Alunos na turma:</h2>
+        <input type="number" id="alunos" name="alunos" required>
+        <h2>Quantidade de faltas:</h2>
+        <input type="number" id="faltas" name="faltas" required>
+        <br>
+        <div id="materia">
+            <h2>Matéria</h2>
+            <input type="radio" id="ge" class="classMateria" name="materia" value="ge" required>
+            <label for="ge" id="labelGE">GE</label>
+            <input type="radio" id="ing" class="classMateria" name="materia" value="ing" required>
+            <label for="ing" id="labelIng">Inglês</label>
+            <br>
+        </div>
+        <br>
+        <input type="submit" value="Calcular" >
+    </form>
+    <script src="./calculo.js"></script>
+    <script>
+        document.querySelectorAll('input[name="turma"]').forEach((radio) => {
+            radio.addEventListener('change', function() {
+                const dia = document.getElementsByName('dia');
+                const diaSemana = document.getElementById('diaSemana');
+                const materia = document.getElementById('materia');
+                const ge = document.getElementById('ge');
+                const ing = document.getElementById('ing');
+                if (this.value === 'pje') {
+                    diaSemana.style.display = 'inline';
+                    materia.style.display = 'none';
+                    ge.required = false;
+                    ing.required = false;
+                    Array.from(dia).forEach((dia) => {
+                        dia.required = true;
+                    });
+                } else {
+                    diaSemana.style.display = 'none';
+                    materia.style.display = 'inline';
+                    ge.required = true;
+                    ing.required = true;
+                    Array.from(dia).forEach((dia) => {
+                        dia.required = false;
+                    });
+                };
+            });
+        });
+    </script>
+</body>
+</html>

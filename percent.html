@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Média Percentual</title>
+</head>
+<body>
+    <h1>Cálculo de Frequência</h1>
+    <form id="calcPercent" style="user-select: none;">
+        <label for="percentGE">Porcentagem em GE</label>
+        <input type="float" id="percentGE" name="percentGE" placeholder="Ex.: 00.00" required>
+        <br><br>
+        <label for="percentIng">Porcentagem em Inglês</label>
+        <input type="float" id="percentIng" name="percentIng" placeholder="Ex.: 00.00" required>
+        <br><br>
+        <input type="submit" value="Calcular">
+    </form>
+    <script>
+        document.getElementById('calcPercent').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const percentGE = Number(document.getElementById('percentGE').value);
+            const percentIng = Number(document.getElementById('percentIng').value);
+
+            console.log(percentGE, percentIng);
+
+            const total = (percentGE + percentIng)/2;
+            alert(`Frequência Total: ${total.toFixed(2)}%`);
+        });
+    </script>
+    <br>
+    <h3>Sem as porcentagens?</h3>
+    <input type="button" onclick="window.open(href='./exitcode.html')" value="Clique aqui">
+</body>
+</html>

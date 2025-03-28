@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada de Ciclo</title>
+</head>
+<body>
+    <h1>Cálculo de Presença</h1>
+    <form id="inputData" style="user-select: none;">
+        <h2>Datas do período:</h2>
+        <input type="date" id="dataInicio" name="dataInicio" required>
+        <p>Até:</p>
+        <input type="date" id="dataFim" name="dataFim" required>
+        <br><br>
+        <h2>Alunos a iniciar</h2>
+        <input type="radio" id="sim" name="logica" value="sim" required>
+        <label for="sim" id="labelSim">Sim</label>
+        <input type="radio" id="nao" name="logica" value="nao" required>
+        <label for="nao" id="labelNao">Não</label>
+        <label for="novosAlunos" id="labelNovos" style="display: none;">Quantidade:</label>
+        <input type="number" id="novosAlunos" name="novosAlunos" style="display: none;">
+        <br><br>
+        <label for="dataInicioNovos" id="labelData" style="display: none;">Data de entrada:</label>
+        <input type="date" id="dataEntradaNovos" name="dataInicioNovos" style="display: none;">
+        <br><br>
+        <input type="submit" value="Próximo">
+    </form>
+    <script src="./dados.js"></script>
+    <script>
+        document.querySelectorAll('input[name="logica"]').forEach((radio) => {
+            radio.addEventListener('change', function() {
+                const labelSim = document.getElementById('labelSim');
+                const labelNao = document.getElementById('labelNao');
+
+                const sim = document.getElementById('sim');
+                const nao = document.getElementById('nao');
+
+                const novosAlunos = document.getElementById('novosAlunos');
+                const labelNovos = document.getElementById('labelNovos');
+
+                const dataEntradaNovos = document.getElementById('dataEntradaNovos');
+                const labelData = document.getElementById('labelData');
+
+                if (this.value === 'sim') {
+                    novosAlunos.style.display = 'inline';
+                    labelNovos.style.display = 'inline';
+
+                    dataEntradaNovos.style.display = 'inline';
+                    labelData.style.display = 'inline';
+
+                    novosAlunos.required = true;
+                    dataEntradaNovos.required = true;
+
+                    labelNao.style.display = 'none';
+                    labelSim.style.display = 'none';
+
+                    nao.style.display = 'none';
+                    sim.style.display = 'none';
+
+                } else {
+                    novosAlunos.style.display = 'none';
+                    labelNovos.style.display = 'none';
+
+                    dataEntradaNovos.style.display = 'none';
+                    labelData.style.display = 'none';
+                }
+            })});
+    </script>
+</body>
+</html>
