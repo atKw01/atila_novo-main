@@ -158,7 +158,7 @@ function calculo() {
             console.log(presencaNovos);
         };
         if (item.faltas > 0) {
-            const presenca2 = Number(((presencaNormal + presencaNovos) - item.faltas) / (presencaNormal + presencaNovos) * 100).toFixed(2);
+            const presenca2 = Number(100/(presencaNormal + presencaNovos) * ((presencaNormal + presencaNovos) - item.faltas)).toFixed(2);
             totalPresenca = presenca2;
             console.log(totalPresenca);
             console.log(item.faltas);
